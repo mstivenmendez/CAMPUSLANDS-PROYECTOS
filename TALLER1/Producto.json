@@ -1,0 +1,19 @@
+[
+    {
+        "pera": {
+            "id": "1",
+            "nombre": "Pera",
+            "precio": 800
+        },
+        "manzana": {
+            "id": "2",
+            "nombre": "Manzana",
+            "precio": 1800
+        },
+        "naranja": {
+            "id": "3",
+            "nombre": "Naranja",
+            "precio": 507
+        }
+    }
+]
