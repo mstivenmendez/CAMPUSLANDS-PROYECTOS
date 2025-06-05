@@ -94,31 +94,53 @@ def ingresar_Contacto(contacto: dict, ingreso = list):
     # Función para ingresar un libro 
     espacio()
     contacto = Crear_Contacto(
-        id = validacion_ingreso(f"INGRESE LA IDENTIFIACION DEL USUARIO  \n ", 4000000, 2000000000),
+        id = validacion_ingreso(f"INGRESE LA IDENTIFIACION DEL USUARIO  \n ", 4000000, 20000000000),
         nombre= validar_texto(f"INGRESE EL NOMBRE DEL CONTACTO  \n"),
-        telefono= validacion_ingreso(f"TELEFONO DEL CONTACTO \n",1000000000,20000000000),
+        telefono= validacion_ingreso(f"TELEFONO DEL CONTACTO \n",1000000000,200000000000),
         email= input("INGRESE EL CORREO ELECTRONICO \n")
     )
     ingreso.append(contacto)
 
-def actualizarJSON(ingreso: str,  recorrido = list):
+def actualizarJSON(ingreso: str):
 
     opcion = validacion_ingreso("Ingrese el ID del usuario a modificar: ", 4000000, 2000000000)
     try:
-        recorrido = leerJson(ingreso)
+        ingresos = leerJson(ingreso)
         espacio()
-        for contacto in recorrido:
+        for contacto in ingresos:
             if contacto["id"] == opcion:
                 contacto["nombre"] = validar_texto(f"Ingrese el nuevo nombre:  \n")
                 contacto["telefono"] = validacion_ingreso(f"Ingrese el nuevo telefono:  \n",1000000000,20000000000)
                 contacto["email"] = validar_texto(f"Ingrese el nuevo email:  \n")
+                escribirJson("Contactos.json",ingresos)
                 print("ACTUALIZACION EXITOSA")
+
                 espacio()
             else:
                 print(f"No se encontró el usuario con ID {opcion}.")
-        escribirJson("Contactos.json", lista_Contactos)
+        # ingresos.append(contacto)
+        # escribirJson("Contacto.json",ingresos)
     except FileNotFoundError as e:
         print(f"El archivo {ingreso} no existe. Por favor, verifique la ruta.\nError: {e}")
+
+def Alistar(ingreso: str):
+
+    opcion = validacion_ingreso("Ingrese el ID del usuario a modificar: ", 4000000, 2000000000)
+
+    try:
+        ingresos = leerJson(ingreso)
+        espacio()
+        for contacto in ingresos:
+            if contacto["id"] == opcion:
+                print (f"SU IDENTIFICACION ES: {opcion}")
+                print (f"SU NOMBRE ES: {contacto["nombre"]}")
+                print (f"SU TELEFONO ES : {contacto["telefono"]}")
+                print (f"SU EMAIL ES : {contacto["email"]}")                
+                espacio()
+            else:
+                 print(f"No se encontró el usuario con ID {opcion}.")
+    except:
+        pass
     
 
 while True :
@@ -132,10 +154,7 @@ while True :
         escribirJson("Contactos.json", lista_Contactos)
 
     elif opcion ==2:
-        actualizarJSON("Contactos.json",lista_Contactos)
-
-        pass
-
+        actualizarJSON("Contactos.json")
     elif opcion == 3:
         pass
     
