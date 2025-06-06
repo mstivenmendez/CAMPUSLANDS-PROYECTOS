@@ -110,6 +110,7 @@ def actualizarCSV(ingreso: str):
     except FileNotFoundError as e:
         print(f"El archivo {ingreso} no existe. Por favor, verifique la ruta.\nError: {e}")
 
+
 while True:
 
     mostrar_menu_principal()
@@ -161,8 +162,17 @@ while True:
     elif opcion == 5 :
         print("Mostrar contenido de Producto.json")
         espacio()
-        datos = leerJson("Producto.json")
-        print(json.dumps(datos, indent=2, ensure_ascii=False))
+        try:
+            productos = leerJson("Producto.json")
+            if productos:
+                print("Contenido de Producto.json:")
+                print(json.dumps(productos, indent=2, ensure_ascii=False))
+            else:
+                print("Producto.json está vacío.")
+        except FileNotFoundError:
+            print("El archivo Producto.json no existe.")
+        except json.JSONDecodeError:
+            print("Error al leer el archivo Producto.json.")
 
 
 

@@ -15,5 +15,24 @@
             "nombre": "Naranja",
             "precio": 507
         }
-    }
+    },
+    [
+        {
+            "durazno": {
+                "id": 1,
+                "nombre": "durazno",
+                "precio": 1200.5
+            },
+            "mandarina": {
+                "id": 2,
+                "nombre": "mandarina",
+                "precio": 800.0
+            },
+            "sandia": {
+                "id": 3,
+                "nombre": "sandia",
+                "precio": 300.75
+            }
+        }
+    ]
 ]
